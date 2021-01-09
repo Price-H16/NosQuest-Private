@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <OutputPath>..\..\dist\World\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotenv.net" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChickenAPI.Core\ChickenAPI.Core.csproj" />
+    <ProjectReference Include="..\OpenNos.DAL.EF\OpenNos.DAL.EF.csproj" />
+    <ProjectReference Include="..\OpenNos.DAL\OpenNos.DAL.csproj" />
+    <ProjectReference Include="..\OpenNos.DTO\OpenNos.DTO.csproj" />
+    <ProjectReference Include="..\OpenNos.GameObject\OpenNos.GameObject.csproj" />
+    <ProjectReference Include="..\OpenNos.PacketHandlers\OpenNos.PacketHandlers.csproj" />
+    <ProjectReference Include="..\OpenNos.Packets.Handlers\OpenNos.Packets.Handlers.csproj" />
+    <ProjectReference Include="..\OpenNos.Packets\OpenNos.Packets.csproj" />
+    <ProjectReference Include="..\OpenNos.Pathfinder\OpenNos.Pathfinder.csproj" />
+    <ProjectReference Include="..\WingsEmu.Communication\WingsEmu.Communication.csproj" />
+    <ProjectReference Include="..\WingsEmu.Customization\WingsEmu.Customization.csproj" />
+    <ProjectReference Include="..\WingsEmu.DAL.EF.DAO\WingsEmu.DAL.EF.DAO.csproj" />
+    <ProjectReference Include="..\WingsEmu.DAL.Interface\WingsEmu.DAL.Interface.csproj" />
+    <ProjectReference Include="..\WingsEmu.Master.Library\WingsEmu.Communication.RPC.csproj" />
+    <ProjectReference Include="..\WingsEmu.Network\WingsEmu.Network.csproj" />
+    <ProjectReference Include="..\_plugins\WingsEmu.LoggingPlugin\WingsEmu.Plugins.Logging.csproj" />
+    <ProjectReference Include="..\_plugins\WingsEmu.Plugins.DB.MSSQL\WingsEmu.Plugins.DB.MSSQL.csproj" />
+  </ItemGroup>
+
+</Project>

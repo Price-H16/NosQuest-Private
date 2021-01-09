@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <OutputPath>..\..\dist\Master\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dotenv.net" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChickenAPI.Core\ChickenAPI.Core.csproj" />
+    <ProjectReference Include="..\ChickenAPI.Plugins\ChickenAPI.Plugins.csproj" />
+    <ProjectReference Include="..\OpenNos.Core\OpenNos.Core.csproj" />
+    <ProjectReference Include="..\OpenNos.DAL\OpenNos.DAL.csproj" />
+    <ProjectReference Include="..\WingsEmu.Master.Library\WingsEmu.Communication.RPC.csproj" />
+    <ProjectReference Include="..\_plugins\WingsEmu.LoggingPlugin\WingsEmu.Plugins.Logging.csproj" />
+    <ProjectReference Include="..\_plugins\WingsEmu.Plugins.DB.MSSQL\WingsEmu.Plugins.DB.MSSQL.csproj" />
+  </ItemGroup>
+
+</Project>

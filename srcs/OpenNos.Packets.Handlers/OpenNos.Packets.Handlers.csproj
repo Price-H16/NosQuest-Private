@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>WingsEmu.PacketHandlers</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenNos.Core\OpenNos.Core.csproj" />
+    <ProjectReference Include="..\OpenNos.DAL\OpenNos.DAL.csproj" />
+    <ProjectReference Include="..\OpenNos.DTO\OpenNos.DTO.csproj" />
+    <ProjectReference Include="..\OpenNos.GameObject\OpenNos.GameObject.csproj" />
+    <ProjectReference Include="..\OpenNos.Packets\OpenNos.Packets.csproj" />
+    <ProjectReference Include="..\OpenNos.Pathfinder\OpenNos.Pathfinder.csproj" />
+    <ProjectReference Include="..\WingsEmu.Communication\WingsEmu.Communication.csproj" />
+    <ProjectReference Include="..\WingsEmu.Customization\WingsEmu.Customization.csproj" />
+    <ProjectReference Include="..\WingsEmu.DAL.Interface\WingsEmu.DAL.Interface.csproj" />
+    <ProjectReference Include="..\WingsEmu.Game.Extensions\WingsEmu.Game.Extensions.csproj" />
+  </ItemGroup>
+
+</Project>

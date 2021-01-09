@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ChickenAPI.Core\ChickenAPI.Core.csproj" />
+    <ProjectReference Include="..\..\ChickenAPI.Plugins\ChickenAPI.Plugins.csproj" />
+    <ProjectReference Include="..\..\OpenNos.DAL.EF\OpenNos.DAL.EF.csproj" />
+    <ProjectReference Include="..\..\OpenNos.DAL\OpenNos.DAL.csproj" />
+    <ProjectReference Include="..\..\OpenNos.GameObject\OpenNos.GameObject.csproj" />
+    <ProjectReference Include="..\..\WingsEmu.DAL.EF.DAO\WingsEmu.DAL.EF.DAO.csproj" />
+  </ItemGroup>
+
+</Project>

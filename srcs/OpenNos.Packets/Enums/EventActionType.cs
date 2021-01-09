@@ -1,0 +1,52 @@
+﻿// WingsEmu
+// 
+// Developed by NosWings Team
+
+namespace WingsEmu.Packets.Enums
+{
+    public enum EventActionType
+    {
+        CHANGEXPRATE,
+        CHANGEDROPRATE,
+        SENDPACKET,
+        DISPOSEMAP,
+        UNSPAWNMONSTERS,
+        SPAWNONLASTENTRY,
+        CLOCK,
+        SPAWNMONSTERS,
+        DROPITEMS,
+        NPCDIALOG,
+        STARTCLOCK,
+        SPAWNPORTAL,
+        CHANGEPORTALTYPE,
+        REFRESHMAPITEMS,
+        NPCSEFFECTCHANGESTATE,
+        SPAWNBUTTON,
+        STARTMAPCLOCK,
+        STOPMAPCLOCK,
+        STOPCLOCK,
+        MAPCLOCK,
+        REGISTEREVENT,
+        SPAWNNPCS,
+        SCRIPTEND,
+        REMOVEBUTTONLOCKER,
+        REMOVEMONSTERLOCKER,
+        REFRESHRAIDGOAL,
+        TELEPORT,
+        THROWITEMS,
+        SETMONSTERLOCKERS,
+        SETBUTTONLOCKERS,
+        SETAREAENTRY,
+        REGISTERWAVE,
+        EFFECT,
+        MOVE,
+        ONTARGET,
+        CONTROLEMONSTERINRANGE,
+        REMOVEPORTAL,
+        ACT4RAIDEND,
+        CLEARMAPMONSTERS,
+        INSTANTBATLLEREWARDS,
+        STARTACT4RAID,
+        ONTIMEELAPSED
+    }
+}

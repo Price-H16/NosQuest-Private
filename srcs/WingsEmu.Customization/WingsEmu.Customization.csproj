@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenNos.GameObject\OpenNos.GameObject.csproj" />
+    <ProjectReference Include="..\OpenNos.Pathfinder\OpenNos.Pathfinder.csproj" />
+  </ItemGroup>
+
+</Project>

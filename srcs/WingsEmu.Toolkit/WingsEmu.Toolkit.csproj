@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\..\dist\Toolkit</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChickenAPI.Multilanguage\ChickenAPI.i18n.csproj" />
+    <ProjectReference Include="..\OpenNos.Core\OpenNos.Core.csproj" />
+    <ProjectReference Include="..\OpenNos.DAL.EF\OpenNos.DAL.EF.csproj" />
+    <ProjectReference Include="..\OpenNos.DAL\OpenNos.DAL.csproj" />
+    <ProjectReference Include="..\OpenNos.DTO\OpenNos.DTO.csproj" />
+    <ProjectReference Include="..\WingsEmu.DAL.EF.DAO\WingsEmu.DAL.EF.DAO.csproj" />
+    <ProjectReference Include="..\_plugins\WingsEmu.LoggingPlugin\WingsEmu.Plugins.Logging.csproj" />
+    <ProjectReference Include="..\_plugins\WingsEmu.Plugins.DB.MSSQL\WingsEmu.Plugins.DB.MSSQL.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,130 @@
+stages:
+  - build
+  - test
+  - release
+  - deploy
+
+##
+## Environment configuration
+##
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+.test-configuration:
+  environment: test
+  only:
+    - /^feature\/.*$/
+    - /^feat\/.*$/
+    - /^chore\/.*$/
+    - /^fix\/.*$/
+    - /^review\/.*$/
+
+.test-configuration-post-build:
+  extends: .test-configuration
+  dependencies:
+    - test-build
+
+###
+## SETUP DEV ENV
+### 
+.dev-configuration:
+  environment: dev
+  only:
+    - develop
+
+.dev-configuration-post-build:
+  extends: .dev-configuration
+  dependencies:
+    - dev-build
+
+.dev-release-docker:
+  extends: .dev-configuration
+  dependencies:
+    - dev-build
+
+##
+## Steps definition
+##
+
+.build-conf: &build-conf
+  stage: build
+  image: microsoft/dotnet:2.2-sdk
+  script:
+    - dotnet build -v q
+
+.unit-test-conf: &unit-test-conf
+  stage: test
+  script:
+    - echo "TODO"
+
+.lint-test-conf: &lint-test-conf
+  stage: test
+  script:
+    - echo "TODO"
+
+.release-docker-conf: &release-docker-conf
+  stage: release
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_BUILD_TOKEN" $CI_REGISTRY
+  script:
+    - docker build -t "$CI_REGISTRY_IMAGE:$DOCKER_TAG" -f "$CONTAINER_DOCKERFILE" .
+    - docker push $CI_REGISTRY_IMAGE
+
+.deploy-conf: &deploy-conf
+  stage: deploy
+  script:
+    - echo "TODO"
+
+##
+## Steps executions - TEST
+##
+
+test-build:
+  extends: .test-configuration
+  <<: *build-conf
+
+test-lint-test:
+  extends: .test-configuration-post-build
+  <<: *lint-test-conf
+
+test-unit-test:
+  extends: .test-configuration-post-build
+  <<: *unit-test-conf
+
+##
+## Steps executions - DEV
+##
+
+dev-build:
+  extends: .dev-configuration
+  <<: *build-conf
+
+dev-lint-test:
+  extends: .dev-configuration-post-build
+  <<: *lint-test-conf
+
+dev-unit-test:
+  extends: .dev-configuration-post-build
+  <<: *unit-test-conf
+
+dev-release-docker-login:
+  extends: .dev-release-docker
+  <<: *release-docker-conf
+  variables:
+    DOCKER_TAG: wingsemu-login
+    CONTAINER_DOCKERFILE: "./scripts/docker/login.Dockerfile"
+
+dev-release-docker-world:
+  extends: .dev-release-docker
+  <<: *release-docker-conf
+  variables:
+    DOCKER_TAG: wingsemu-world
+    CONTAINER_DOCKERFILE: scripts/docker/world.Dockerfile
+
+dev-deploy:
+  extends: .dev-configuration-post-build
+  <<: *deploy-conf

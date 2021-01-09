@@ -1,0 +1,135 @@
+version: '3.7'
+
+
+services:
+  ## Login Server
+  wingsemu-login:
+    container_name: wingsemu-login
+    image: wingsemu-login:latest
+    build:
+      context: ../../
+      dockerfile: scripts/docker/login.Dockerfile
+    restart: always
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 30s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 4000:4000
+    volumes:
+      - login-plugins:/server/plugins
+    environment:
+      SERVER_PORT: 4000
+      MASTER_IP: master.wingsemu
+      MASTER_PORT: 
+    expose:
+      - 4000
+    networks:
+      - wingsemu-back
+    depends_on:
+      - wingsemu-session-service-storage
+      - wingsemu-database-storage
+
+  ## World Server
+  wingsemu-master:
+    container_name: wingsemu-master
+    image: wingsemu-master:latest
+    build:
+      context: ../../
+      dockerfile: scripts/docker/master.Dockerfile
+    restart: always
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 20500:20500
+    environment:
+      SERVER_IP: 127.0.0.1
+      SERVER_PORT: 7000
+      SERVER_WORLDGROUP: NosWings
+      MASTER_IP: wingsemu-master
+      MASTER_PORT: 20500
+    expose:
+      - 20500
+    networks:
+      - wingsemu-back
+    depends_on:
+      - wingsemu-session-service-storage
+      - wingsemu-database-storage
+
+  ## World Server
+  wingsemu-world-channel-1:
+    container_name: wingsemu-game-channel-1
+    image: wingsemu-world:latest
+    build:
+      context: ../../
+      dockerfile: scripts/docker/world.Dockerfile
+    restart: always
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 15s
+        max_attempts: 3
+        window: 120s
+    ports:
+      - 7000:7000
+    volumes:
+      - wingsemu-plugins:/server/plugins
+    environment:
+      SERVER_IP: 127.0.0.1
+      SERVER_PORT: 7000
+    expose:
+      - 7000
+    networks:
+      - wingsemu-back
+    depends_on:
+      - wingsemu-session-service-storage
+      - wingsemu-database-storage
+
+  ## MSSQL DATABASE
+  wingsemu-database-storage:
+    image: microsoft/mssql-server-linux:latest
+    container_name: wingsemu-database-storage
+    restart: always
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: strong_pass2018
+    deploy:
+      mode: global
+    ports:
+      - 1433:1433
+    volumes:
+      - mssql-database:/var/opt/mssql
+    networks:
+      - wingsemu-back
+
+  ## REDIS DB SESSION SERVICE
+  wingsemu-session-service-storage:
+    image: redis:alpine
+    container_name: wingsemu-session-service-storage
+    restart: always
+    deploy:
+      mode: global
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+    networks:
+      - wingsemu-back
+
+volumes:
+  redis-data:
+  login-plugins:
+  world-plugins:
+  mssql-database:
+
+networks:
+  wingsemu-back:

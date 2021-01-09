@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+import "protobuf/uuid.proto";
+
+message Bool {
+    bool boolean = 1;
+}
+message Name {
+    string str = 1;
+}
+
+message Int {
+    int32 id = 1;
+}
+
+message Long {
+    int64 id = 1;
+}
+
+message Void {
+
+}
+
+message DisconnectCharacterRequest {
+	UUID worldId = 1;
+	int64 characterId = 2;
+}
+
+message ChangeAuthorityRequest {
+	string worldGroup = 1;
+	string characterName = 2;
+	int32 authority = 3;
+}
+
+message AccountIdAndSessionIdRequest {
+	int64 accountId = 1;
+	int64 sessionId = 2;
+}
+
+message IsCharacterConnectedRequest {
+	string WorldGroup = 1;
+	int64 characterId = 2;
+}
+
+enum messageType {
+	Whisper = 0;
+	PrivateChat = 1;
+	Family = 2;
+	Shout = 3;
+	FamilyChat = 4;
+	WhisperGM = 5;
+}
+
+message MessageToCharacter {
+	int64 DestinationCharacterId = 1;
+	string Message = 2;
+	int64 SourceCharacterId = 3;
+	UUID SourceWorldId = 4;
+	messageType Type = 5;
+}
+
+message UpdateRelationQuery {
+	string WorldGroup = 1;
+	int64 RelationId = 2;
+}
+
+message UpdateBazaarQuery {
+	string WorldGroup = 1;
+	int64 BazaarItemId = 2;
+}
+
+message ConnectCharacterRequest {
+	UUID Id = 1;
+	int64 characterId = 2;
+}
+
+message UpdateFamilyRequest {
+	string worldGroup = 1;
+	int64 familyId = 2;
+	bool changeFaction = 3;
+}
+
+message RegisterSessionQuery {
+	int64 AccountId = 1;
+	int32 SessionId = 2;
+}
+
+message ConnectAccountOnWorldRequest {
+	UUID WorldId = 1;
+	int64 AccountId = 2;
+	int64 SessionId = 3;
+}

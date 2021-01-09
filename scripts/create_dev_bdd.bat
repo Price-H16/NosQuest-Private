@@ -1,0 +1,2 @@
+::
+docker run -e MSSQL_IP=database -e MSSQL_USER_ID=sa -e MSSQL_USER_PW=strong_pass2018 -e DATABASE_NAME=noswings_game -e DATABASE_OWNER_ID=wingsemu_owner -e DATABASE_OWNER_PW=strong_pass2018 --link wingsemu-database:database --name test-db -it --rm blowaxd693/mssql-createdb-tool

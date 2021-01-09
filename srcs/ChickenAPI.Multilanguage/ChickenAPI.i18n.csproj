@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>ChickenAPI.i18n</AssemblyName>
+    <RootNamespace>ChickenAPI.i18n</RootNamespace>
+  </PropertyGroup>
+
+</Project>

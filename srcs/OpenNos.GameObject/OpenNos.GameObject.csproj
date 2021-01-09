@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloneExtensions" Version="1.4.2" />
+    <PackageReference Include="System.Reactive" Version="4.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChickenAPI.Core\ChickenAPI.Core.csproj" />
+    <ProjectReference Include="..\ChickenAPI.Multilanguage\ChickenAPI.i18n.csproj" />
+    <ProjectReference Include="..\OpenNos.Core\OpenNos.Core.csproj" />
+    <ProjectReference Include="..\OpenNos.DAL\OpenNos.DAL.csproj" />
+    <ProjectReference Include="..\OpenNos.DTO\OpenNos.DTO.csproj" />
+    <ProjectReference Include="..\OpenNos.Packets\OpenNos.Packets.csproj" />
+    <ProjectReference Include="..\OpenNos.Pathfinder\OpenNos.Pathfinder.csproj" />
+    <ProjectReference Include="..\WingsEmu.Communication\WingsEmu.Communication.csproj" />
+    <ProjectReference Include="..\WingsEmu.Configuration\WingsEmu.Configuration.csproj" />
+    <ProjectReference Include="..\WingsEmu.DAL.Interface\WingsEmu.DAL.Interface.csproj" />
+  </ItemGroup>
+
+</Project>

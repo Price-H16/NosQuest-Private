@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+import "protobuf/uuid.proto";
+import "protobuf/messages.proto";
+
+service Master {
+    /*
+    ** Account
+    */
+	rpc RegisterAccountLogin(RegisterAccountLoginRequest) returns (Void) {}
+    rpc IsAccountConnected(Long) returns (Bool) {}
+	rpc ConnectAccountOnWorld(ConnectAccountOnWorldRequest) returns (Bool) {}
+    rpc DisconnectAccount(Long) returns (Void) {}
+    rpc PulseAccount(Long) returns (Void) {}
+
+    /*
+    ** Character
+    */
+    rpc IsCharacterConnected(IsCharacterConnectedRequest) returns (Bool) {}
+    rpc ConnectCharacter(ConnectCharacterRequest) returns (Bool) {}
+    rpc DisconnectCharacter(DisconnectCharacterRequest) returns (Void) {}
+	rpc SendMessageToCharacter(MessageToCharacter) returns (Void) {}
+	rpc ChangeAuthority(ChangeAuthorityRequest) returns (Bool) {}
+
+	/*
+	** Session
+	*/
+    rpc IsLoginPermitted(AccountIdAndSessionIdRequest) returns (Bool) {}
+    rpc IsCrossServerLoginPermitted(AccountIdAndSessionIdRequest) returns (Bool) {}
+    rpc RegisterCrossServerLogin(RegisterSessionQuery) returns (Void) {}
+	rpc KickSession(AccountIdAndSessionIdRequest) returns (Void) {}
+
+	/*
+	** World related things
+	*/
+	rpc IsMasterOnline(Void) returns (Bool) {}
+	rpc RegisterWorldServer(RegisterWorldServerRequest) returns (Int) {}
+	rpc UnregisterWorldServer(UUID) returns (Void) {}
+	rpc GetChannelIdByWorldId(UUID) returns (Int) {}
+	rpc Shutdown(Name) returns (Void) {}
+	rpc GetMaintenanceState(Void) returns (Bool) {}
+	rpc SetMaintenanceState(Bool) returns (Void) {}
+
+	/*
+	** Act 4
+	*/
+	rpc GetPreviousChannelByAccountId(Long) returns (RegisteredWorldServer) {}
+	rpc GetAct4ChannelInfo(Name) returns (RegisteredWorldServer) {}
+
+	/*
+	** WorldGroup refreshes
+	*/
+    rpc RetrieveRegisteredWorldServers(Void) returns (RegisteredWorldServerResponse) {}
+	rpc UpdateFamily(UpdateFamilyRequest) returns (Void) {}
+	rpc UpdateRelation(UpdateRelationQuery) returns (Void) {}
+    rpc UpdateBazaar(UpdateBazaarQuery) returns (Void) {}
+    rpc Cleanup(Void) returns (Void) {}
+}
+
+message RegisterAccountLoginRequest {
+	int64 accountId = 1;
+	int64 sessionId = 2;
+	string accountName = 3;
+	string ipAddress = 4;
+}
+
+message RegisteredWorldServerResponse {
+	repeated RegisteredWorldServer Servers = 1;
+}
+
+message RegisteredWorldServer {
+	UUID Id = 1;
+	string WorldGroup = 2;
+	int32 ChannelId = 3;
+	int32 SessionLimit = 4;
+	string IpAddress = 5;
+	int32 Port = 6;
+}
+
+message gRPCEndPointInformations {
+	string Ip  = 1;
+	int32 Port = 2;
+}
+
+message RegisterWorldServerRequest {
+	RegisteredWorldServer RegisteredWorldServerInformations = 1;
+	gRPCEndPointInformations gRPCEndPoint = 2;
+}

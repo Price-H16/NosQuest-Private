@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+import "protobuf/uuid.proto";
+import "protobuf/messages.proto";
+
+service World {
+	rpc CharacterConnected(Long) returns (Void) {}
+	rpc CharacterDisconnected(Long) returns (Void) {}
+	rpc SendMessageToCharacter(SendMessageToCharacterRequest) returns (Void) {}
+	
+	rpc ChangeAuthority(ChangeAuthorityWorldRequest) returns (Void) {}
+    rpc KickSession(AccountIdAndSessionIdRequest) returns (Void) {}
+    rpc SendMail(SendMailRequest) returns (Void) {}
+	
+	rpc UpdateBazaar(Long) returns (Bool) {}
+	rpc UpdateFamily(WorldUpdateFamilyRequest) returns (Void) {}
+	rpc UpdatePenaltyLog(Int) returns (Void) {}
+	rpc UpdateRelation(Long) returns (Void) {}
+
+	rpc Shutdown(Void) returns (Void) {}
+}
+
+message SendMessageToCharacterRequest {
+	int64 DestinationCharacterId = 1;
+	int64 SourceCharacterId = 2;
+	UUID SourceWorldId = 3;
+	int32 SourceWorldChannelId = 4;
+	int32 MessageType = 5;
+}
+
+message ChangeAuthorityWorldRequest {
+	int64 accountId = 1;
+	int32 authorityType = 2;
+}
+
+message WorldUpdateFamilyRequest {
+	int64 familyId = 1;
+	bool changeFaction = 2;
+}
+
+message SendMailRequest {
+	int32 AttachmentAmount = 1;
+	int32 AttachmentRarity = 2;
+	int32 AttachmentUpgrade = 3;
+	int32 AttachmentVnum = 4;
+	int64 Date = 5;
+	string EqPacket = 6;
+	bool IsOpened = 7;
+	bool IsSenderCopy = 8;
+	string Message = 9;
+	int64 ReceiverId = 10;
+	int32 SenderClass = 11;
+	int32 SenderGender = 12;
+	int32 SenderHairColor = 13;
+	int32 SenderHairStyle = 14;
+	int64 SenderId = 15;
+	int32 SenderMorphId = 16;
+	string Title = 17;
+	int32 Design = 18;
+}

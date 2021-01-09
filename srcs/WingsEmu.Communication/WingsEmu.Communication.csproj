@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OpenNos.DTO\OpenNos.DTO.csproj" />
+    <ProjectReference Include="..\OpenNos.Packets\OpenNos.Packets.csproj" />
+  </ItemGroup>
+
+</Project>
